@@ -1,0 +1,32 @@
+{
+    "posts": [
+        {
+            "id": 1,
+            "productName": "Laptop",
+            "categoryId": 1,
+            "unitPrice": 4999.99
+        },
+        {
+            "id": 2,
+            "productName": "Mouse",
+            "categoryId": 1,
+            "unitPrice": 50.99
+        },
+        {
+            "id": 3,
+            "productName": "Water",
+            "categoryId": 2,
+            "unitPrice": 12
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "categoryName": "Technology"
+        },
+        {
+            "id": 2,
+            "categoryName": "Beverages"
+        }
+    ]
+}
