@@ -3,7 +3,6 @@ package project
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 )
@@ -20,10 +19,10 @@ type Category struct {
 	CategoryName string `json:"categoryName"`
 }
 
-func GetAllProducts() {
+func GetAllProducts() ([]Product, error) {
 	response, err := http.Get("http://localhost:3000/products") // GET ile okuma işlemlerini yapabiliriz.
 	if err != nil {
-		fmt.Println(err)
+		return nil, err
 	}
 
 	defer response.Body.Close()
@@ -33,17 +32,17 @@ func GetAllProducts() {
 	var products []Product
 	json.Unmarshal(bodyBytes, &products)
 
-	fmt.Println(products)
+	return products, nil
 }
 
-func AddProduct() {
-	product := Product{Id: 9, ProductName: "Microphone2", CategoryId: 1, UnitPrice: 2000.00}
+func AddProduct() (Product, error) {
+	product := Product{ProductName: "Microphone 3", CategoryId: 1, UnitPrice: 2000.00} //Id vermediğimiz durumda kendisi auto verir
 	jsonProduct, err := json.Marshal(product)
 
 	response, err := http.Post("http://localhost:3000/products", "application/json;charset=utf-8", bytes.NewBuffer(jsonProduct)) //POST ile ekleme, düzenleme ve silme işlemlerini yapabiliriz.
 
 	if err != nil {
-		fmt.Println(err)
+		return Product{}, err
 	}
 
 	defer response.Body.Close()
@@ -53,5 +52,5 @@ func AddProduct() {
 	var productResponse Product
 
 	json.Unmarshal(bodyBytes, &productResponse)
-	fmt.Println("Kaydedildi", productResponse)
+	return productResponse, nil
 }

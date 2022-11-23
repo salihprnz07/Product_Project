@@ -47,6 +47,12 @@
       "productName": "Microphone",
       "CategoryId": 1,
       "UnitPrice": 2000
+    },
+    {
+      "id": 10,
+      "productName": "Microphone 3",
+      "CategoryId": 1,
+      "UnitPrice": 2000
     }
   ],
   "categories": [
